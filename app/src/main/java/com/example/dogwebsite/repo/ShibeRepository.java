@@ -12,7 +12,7 @@ public class ShibeRepository {
     private ShibeRepository() {}
 
     public Call<List<String>> getShibes(int count) {
-        ShibeService shibeService = RetrofitInstance.getINSTANCE();
+        ShibeService shibeService = RetrofitInstance.getInstance();
         return shibeService.getShibes(count);
     }
 

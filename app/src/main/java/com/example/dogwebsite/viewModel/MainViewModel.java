@@ -15,8 +15,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
-    private MutableLiveData<Boolean> _isSuccessful = new MutableLiveData<>();
-    public LiveData<Boolean> isSuccessful = (LiveData) _isSuccessful;
+    private final MutableLiveData<Boolean> _isSuccessful = new MutableLiveData<>();
+    public LiveData isSuccessful = (LiveData) _isSuccessful;
+    private MutableLiveData<String> _firstURL = new MutableLiveData<>();
+    public LiveData firstURL = (LiveData) _firstURL;
+    private MutableLiveData<String> _uRLList = new MutableLiveData<>();
+    public LiveData uRLList = (LiveData) _uRLList;
 
     public void fetchShibes(int count) {
         ShibeRepository.getInstance().getShibes(count).enqueue(new Callback<List<String>>() {
@@ -24,12 +28,15 @@ public class MainViewModel extends ViewModel {
             public void onResponse(
                     @NotNull Call<List<String>> call,
                     @NotNull Response<List<String>> response) {
-                _isSuccessful.setValue(response.body().size() == count);
+                _isSuccessful.setValue(response.body().size() > 0);
+                _firstURL.setValue(response.body().get(0));
+                _uRLList.setValue(response.body().toString());
             }
 
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
                 _isSuccessful.setValue(false);
+                _firstURL.setValue("");
             }
         });
     }

@@ -14,7 +14,7 @@ public class RetrofitInstance {
 
     }
 
-    public static ShibeService getINSTANCE() {
+    public static ShibeService getInstance() {
         if (INSTANCE == null)
             INSTANCE = new Retrofit.Builder().baseUrl(BASE_URL)
                     .addConverterFactory(MoshiConverterFactory.create())
