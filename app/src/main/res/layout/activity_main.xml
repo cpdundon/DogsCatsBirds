@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    tools:context=".view.ShibeActivity">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_count"
@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:inputType="number"
         android:textAppearance="?textAppearanceHeadline5"
-        app:layout_constraintBottom_toTopOf="@id/tv_rtn_time"
+        app:layout_constraintBottom_toTopOf="@id/btn_format"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btn_fetch"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -22,19 +22,30 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Fetch"
-        app:layout_constraintBottom_toTopOf="@id/tv_rtn_time"
+        app:layout_constraintBottom_toTopOf="@id/btn_format"
         app:layout_constraintStart_toEndOf="@id/et_count"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_format"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Format"
+        app:layout_constraintBottom_toTopOf="@id/tv_rtn_time"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_rtn_time" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_rtn_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="?textAppearanceHeadline5"
-        app:layout_constraintTop_toBottomOf="@id/btn_fetch"
+        app:layout_constraintTop_toBottomOf="@id/btn_format"
         app:layout_constraintBottom_toTopOf="@id/rv_image_list"
-        android:gravity="center"/>
+        android:gravity="center"
+        tools:listitem="...TIME..." />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_image_list"
@@ -43,6 +54,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_rtn_time"
         tools:listitem="TEST" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

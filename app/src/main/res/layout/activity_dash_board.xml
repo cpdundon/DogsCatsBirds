@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context=".view.ShibeActivity">
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_hashed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/et_int_input"
+        app:layout_constraintBottom_toTopOf="@+id/radio_group"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="top|left">
+
+        <RadioButton android:id="@+id/radio_true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hashed" />
+        <RadioButton android:id="@+id/radio_false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not Hashed" />
+    </RadioGroup>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/radio_hashed"
+        app:layout_constraintBottom_toTopOf="@+id/btn_fetch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="top|left">
+
+        <RadioButton android:id="@+id/radio_shibes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shibes" />
+        <RadioButton android:id="@+id/radio_cats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cats" />
+        <RadioButton android:id="@+id/radio_birds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Birds" />
+    </RadioGroup>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/et_int_input"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:textAppearance="?textAppearanceHeadline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/radio_hashed"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_fetch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Go To next Activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/radio_group"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

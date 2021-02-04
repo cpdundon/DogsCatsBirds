@@ -26,8 +26,8 @@ public class MainViewModel extends ViewModel {
         return _uRLList;
     }
 
-    public void fetchShibes(int count) {
-        ShibeRepository.getInstance().getShibes(count).enqueue(new Callback<List<String>>() {
+    public void fetchShibes(boolean encrypted, String animal, int count) {
+        ShibeRepository.getInstance().getShibes(encrypted, animal, count).enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(
                     @NotNull Call<List<String>> call,

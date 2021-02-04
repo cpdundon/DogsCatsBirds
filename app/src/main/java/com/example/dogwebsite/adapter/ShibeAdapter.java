@@ -66,8 +66,14 @@ public class ShibeAdapter extends RecyclerView.Adapter<ShibeAdapter.ShibeViewHol
 
         public void setShibe(String shibe) {
             ImageView imgShibe = binding.ivImage;
-            //binding.tvEmail.setText(person.getEmail());
-            Glide.with(this.itemView).load(shibe).into(imgShibe);
+            String url = constructURL(shibe);
+            Glide.with(this.itemView).load(url).into(imgShibe);
+        }
+
+        private String constructURL(String rootString) {
+            final String prefix = "https://cdn.shibe.online/shibes/";
+            final String suffix = ".jpg";
+            return prefix + rootString + suffix;
         }
 
     }

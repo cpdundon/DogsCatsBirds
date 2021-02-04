@@ -11,10 +11,11 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/iv_image"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:backgroundTint="@android:color/holo_blue_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="fitXY"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

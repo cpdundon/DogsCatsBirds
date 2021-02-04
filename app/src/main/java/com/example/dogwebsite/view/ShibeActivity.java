@@ -4,23 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.dogwebsite.R;
 import com.example.dogwebsite.adapter.ShibeAdapter;
 import com.example.dogwebsite.databinding.ActivityMainBinding;
+import com.example.dogwebsite.utils.Constants;
 import com.example.dogwebsite.viewModel.MainViewModel;
 import com.google.android.material.textview.MaterialTextView;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class ShibeActivity extends AppCompatActivity {
     private MainViewModel viewModel;
     private ActivityMainBinding binding;
+    private boolean gridFormat = false;
+    private String animal = "shibes";
+    private boolean encrypted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
         viewModel = new ViewModelProvider(this).get(MainViewModel.class);
 
+        // Get data from intent
+        animal = getIntent().getStringExtra(Constants.SHIBE_ACTIVITY_PARAM_STRING);
+        int intData = getIntent().getIntExtra(Constants.SHIBE_ACTIVITY_PARAM_INT, 0);
+        encrypted = getIntent().getBooleanExtra(Constants.SHIBE_ACTIVITY_PARAM_ENCRYPTED, false);
+
         setUpListeners();
         setUpObservers();
+
+        Toast.makeText(this, animal, Toast.LENGTH_SHORT).show();
+        viewModel.fetchShibes(encrypted, animal, intData);
     }
 
     private void setUpObservers() {
@@ -42,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 ((MaterialTextView) binding.tvRtnTime)
                         .setText(String.valueOf(System.currentTimeMillis()));
                 String msg = "Call: " + String.valueOf(isSuccessful);
-                Toast.makeText(MainActivity.this, "Call: " + isSuccessful, Toast.LENGTH_SHORT).show();
+                Toast.makeText(ShibeActivity.this, "Call: " + isSuccessful, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -68,11 +80,28 @@ public class MainActivity extends AppCompatActivity {
                     count = Integer.parseInt(entered);
                 }
 
-                viewModel.fetchShibes(count);
+                viewModel.fetchShibes(encrypted, animal, count);
             }
         });
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        binding.rvImageList.setLayoutManager(linearLayoutManager);
+        binding.btnFormat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gridFormat = !gridFormat;
+                setGridLayoutMgr(gridFormat);
+            }
+        });
+
+        setGridLayoutMgr(false);
+    }
+
+    private void setGridLayoutMgr(boolean grid) {
+        if (grid) {
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+            binding.rvImageList.setLayoutManager(gridLayoutManager);
+        } else {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            binding.rvImageList.setLayoutManager(linearLayoutManager);
+        }
     }
 }
