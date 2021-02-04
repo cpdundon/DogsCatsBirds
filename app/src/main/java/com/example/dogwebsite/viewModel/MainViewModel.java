@@ -19,8 +19,12 @@ public class MainViewModel extends ViewModel {
     public LiveData isSuccessful = (LiveData) _isSuccessful;
     private MutableLiveData<String> _firstURL = new MutableLiveData<>();
     public LiveData firstURL = (LiveData) _firstURL;
-    private MutableLiveData<String> _uRLList = new MutableLiveData<>();
-    public LiveData uRLList = (LiveData) _uRLList;
+    private MutableLiveData<List<String>> _uRLList = new MutableLiveData<>();
+    //private LiveData<List<String>> uRLList = _uRLList;
+
+    public LiveData<List<String>> getLiveData() {
+        return _uRLList;
+    }
 
     public void fetchShibes(int count) {
         ShibeRepository.getInstance().getShibes(count).enqueue(new Callback<List<String>>() {
@@ -30,7 +34,7 @@ public class MainViewModel extends ViewModel {
                     @NotNull Response<List<String>> response) {
                 _isSuccessful.setValue(response.body().size() > 0);
                 _firstURL.setValue(response.body().get(0));
-                _uRLList.setValue(response.body().toString());
+                _uRLList.setValue(response.body());
             }
 
             @Override
