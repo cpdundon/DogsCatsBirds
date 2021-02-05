@@ -62,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/radio_hashed"/>
+        app:layout_constraintBottom_toTopOf="@id/radio_hashed" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_fetch"
@@ -72,5 +72,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/radio_group"
+        android:textSize="25dp"
+        style="@style/ShapeAppearance.MyTheme.SmallComponent"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,6 +13,4 @@ public interface ShibeService {
     // /com.example.dogwebsite.api/shibes?count=50
     @GET("/api/{animal}")
     Call<List<String>> getShibes(@Path("animal") String animal, @QueryMap Map<String, String> options);
-    //@QueryMap Map<String, String> options
-    //Call<List<String>> getShibes(@Path("animal") String animal, @Query("count") int count);
 }

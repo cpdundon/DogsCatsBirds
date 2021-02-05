@@ -61,7 +61,7 @@ public class ShibeActivity extends AppCompatActivity {
         viewModel.getLiveData().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> shibes) {
-                ShibeAdapter shibeAdapter = new ShibeAdapter(shibes);
+                ShibeAdapter shibeAdapter = new ShibeAdapter(shibes, animal, encrypted);
                 binding.rvImageList.setAdapter(shibeAdapter);
             }
         });

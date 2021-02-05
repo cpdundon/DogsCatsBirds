@@ -18,7 +18,7 @@ public class ShibeRepository {
 
         Map<String, String> toPass = new HashMap();
         toPass.put("count", Integer.toString(count));
-        toPass.put("httpsUrls", Boolean.toString(encrypted));
+        toPass.put("urls", Boolean.toString(!encrypted));
         return shibeService.getShibes(animal, toPass);
     }
 

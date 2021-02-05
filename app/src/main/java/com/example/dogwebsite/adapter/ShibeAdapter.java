@@ -30,8 +30,12 @@ import java.util.List;
 // */
 public class ShibeAdapter extends RecyclerView.Adapter<ShibeAdapter.ShibeViewHolder> {
     private final List<String> shibes;
+    private boolean encrypted = false;
+    private String animal = "shibe";
 
-    public ShibeAdapter(List<String> shibes) {
+    public ShibeAdapter(List<String> shibes, String animal, boolean encrypted) {
+        this.animal = animal;
+        this.encrypted = encrypted;
         this.shibes = shibes;
     }
 
@@ -43,7 +47,7 @@ public class ShibeAdapter extends RecyclerView.Adapter<ShibeAdapter.ShibeViewHol
                 parent,
                 false
         );
-        return new ShibeViewHolder(binding);
+        return new ShibeViewHolder(binding, animal, encrypted);
     }
 
     @Override
@@ -58,20 +62,30 @@ public class ShibeAdapter extends RecyclerView.Adapter<ShibeAdapter.ShibeViewHol
     static class ShibeViewHolder extends RecyclerView.ViewHolder {
 
         private final ItemImageBinding binding;
+        private final String animal;
+        private final boolean encrypted;
 
-        public ShibeViewHolder(@NonNull ItemImageBinding binding) {
+        public ShibeViewHolder(@NonNull ItemImageBinding binding, String animal, boolean encrypted) {
             super(binding.getRoot());
             this.binding = binding;
+            this.animal = animal;
+            this.encrypted = encrypted;
         }
 
         public void setShibe(String shibe) {
             ImageView imgShibe = binding.ivImage;
-            String url = constructURL(shibe);
+            String url;
+            if (encrypted) {
+                url = constructURL(shibe, animal);
+            } else {
+                url = shibe;
+            }
+
             Glide.with(this.itemView).load(url).into(imgShibe);
         }
 
-        private String constructURL(String rootString) {
-            final String prefix = "https://cdn.shibe.online/shibes/";
+        private String constructURL(String rootString, String animal) {
+            final String prefix = "https://cdn.shibe.online/"+ animal +"/";
             final String suffix = ".jpg";
             return prefix + rootString + suffix;
         }

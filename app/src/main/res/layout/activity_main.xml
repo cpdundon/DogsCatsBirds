@@ -25,7 +25,9 @@
         app:layout_constraintBottom_toTopOf="@id/btn_format"
         app:layout_constraintStart_toEndOf="@id/et_count"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="15dp"
+        style="@style/ShapeAppearance.MyTheme.SmallComponent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_format"
@@ -35,7 +37,9 @@
         app:layout_constraintBottom_toTopOf="@id/tv_rtn_time"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_rtn_time" />
+        app:layout_constraintTop_toTopOf="@id/tv_rtn_time"
+        android:textSize="15dp"
+        style="@style/ShapeAppearance.MyTheme.SmallComponent"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_rtn_time"
